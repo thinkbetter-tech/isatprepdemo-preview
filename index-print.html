@@ -6,8 +6,8 @@
 <title>iSATPrep — English, the math way (print)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Source+Sans+3:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=4">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=14">
 <style>
   /* PRINT STYLES */
   @page { size: A4 portrait; margin: 14mm 12mm; }
@@ -82,36 +82,34 @@
 <script type="text/babel">
 const TWEAK_DEFAULTS = {
   "navy": "#152647",
+  "purple": "#6D5BD0",
   "amber": "#F59E0B",
-  "bg": "#FAFAF7",
-  "headlineFont": "Fraunces",
-  "bodyFont": "Source Sans 3",
-  "density": "regular",
-  "heroVariant": "diagram"
+  "bg": "#FFFFFF",
+  "headlineFont": "Inter",
+  "bodyFont": "Inter"
 };
 
 function PrintApp() {
-  // Apply theme variables once (no tweaks panel in print)
   React.useEffect(() => {
     const r = document.documentElement.style;
     r.setProperty('--navy', TWEAK_DEFAULTS.navy);
     r.setProperty('--navy-2', TWEAK_DEFAULTS.navy);
+    r.setProperty('--purple', TWEAK_DEFAULTS.purple);
     r.setProperty('--amber', TWEAK_DEFAULTS.amber);
     r.setProperty('--bg', TWEAK_DEFAULTS.bg);
-    r.setProperty('--serif', `"${TWEAK_DEFAULTS.headlineFont}", Georgia, serif`);
+    r.setProperty('--serif', `"${TWEAK_DEFAULTS.headlineFont}", system-ui, sans-serif`);
     r.setProperty('--sans', `"${TWEAK_DEFAULTS.bodyFont}", system-ui, sans-serif`);
-    document.body.classList.add('density-regular');
   }, []);
 
   return (
     <div data-screen-label="Marketing Home (print)">
       <Nav />
-      <Hero onOpenDemo={() => {}} variant="diagram" />
+      <Hero onOpenDemo={() => {}} />
       <Problem />
       <Method />
-      <Demo onOpenDemo={() => {}} />
-      <Walkthroughs />
       <Instructor />
+      {/* <Demo onOpenDemo={() => {}} /> */}
+      <Walkthroughs />
       <Topics />
       <Testimonials />
       <Pricing />

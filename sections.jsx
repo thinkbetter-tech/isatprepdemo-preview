@@ -60,14 +60,18 @@ function Nav({ onOpenDemo }) {
   );
 }
 
-function Hero({ onOpenDemo, variant }) {
+function Hero({ onOpenDemo }) {
   return (
-    <section className={"hero" + (variant === "quiet" ? " hero-variant-quiet" : "")} id="top">
+    <section className="hero" id="top">
+      <div className="hero-bg" aria-hidden="true">
+        <div className="hero-blob hero-blob--1"></div>
+        <div className="hero-blob hero-blob--2"></div>
+      </div>
       <div className="wrap hero-grid">
         <div>
           <span className="eyebrow">Digital SAT · Reading & Writing</span>
           <h1 className="mt-2">
-            You don't do English the English way — you do it the <em>math</em> way.
+            You don't do English the English way — you do it the <span className="hl">math</span> way.
           </h1>
           <p className="hero-sub">
             A structured, formula-driven framework for the SAT Reading & Writing
@@ -75,20 +79,55 @@ function Hero({ onOpenDemo, variant }) {
           </p>
           <div className="hero-ctas">
             <a href="#pricing" className="btn btn-primary btn-lg">Start free <span className="btn-arrow">→</span></a>
-            <button className="btn btn-outline btn-lg" onClick={onOpenDemo}>
-              <PlayIcon size={14} /> Watch demo
+            <button className="btn-link" onClick={onOpenDemo}>
+              <PlayIcon size={14} /> Watch demo <span className="btn-arrow">→</span>
             </button>
           </div>
         </div>
-        <HeroDiagram />
+        <HeroMock />
       </div>
     </section>
   );
 }
 
+function HeroMock() {
+  return (
+    <div className="hero-shot" aria-hidden="true">
+      <div className="hero-mock">
+        <div className="hero-mock__head">
+          <span className="hero-mock__pill">01 / 27 · TEXT STRUCTURE</span>
+          <span className="hero-mock__badge">FREE</span>
+        </div>
+        <div className="hero-mock__passage">
+          <p>
+            The author begins by establishing a familiar context, then introduces a complication
+            that challenges the reader's assumptions, before <span className="hero-mock__hl">arriving at a counterintuitive conclusion</span>.
+          </p>
+        </div>
+        <div className="hero-mock__prompt">Which choice best describes the structure of the passage?</div>
+        <div className="hero-mock__choices">
+          <div className="hero-mock__choice">
+            <span className="hero-mock__key">A</span><span>Cause and effect throughout</span>
+          </div>
+          <div className="hero-mock__choice hero-mock__choice--right">
+            <span className="hero-mock__key">B</span><span>Setup, complication, resolution</span>
+            <svg className="hero-mock__check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12l5 5 9-11"/></svg>
+          </div>
+          <div className="hero-mock__choice">
+            <span className="hero-mock__key">C</span><span>Comparison of two viewpoints</span>
+          </div>
+          <div className="hero-mock__choice">
+            <span className="hero-mock__key">D</span><span>Chronological narrative</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function Problem() {
   return (
-    <section className="bg-bone">
+    <section>
       <div className="wrap split-2">
         <div>
           <span className="eyebrow">The problem</span>
@@ -119,20 +158,17 @@ function Method() {
         </div>
         <div className="method-flow">
           <div className="method-step">
-            <div className="num">STEP 01</div>
-            <div className="glyph"><GlyphRead /></div>
+            <div className="num">01</div>
             <h3>Read with intent</h3>
             <p>Anchor on the passage's structure — claim, evidence, qualifier — instead of vibes.</p>
           </div>
           <div className="method-step">
-            <div className="num">STEP 02</div>
-            <div className="glyph"><GlyphFormula /></div>
+            <div className="num">02</div>
             <h3>Apply the formula</h3>
             <p>Each question type has a repeatable rule. Plug in inputs; get a predicted answer.</p>
           </div>
           <div className="method-step">
-            <div className="num">STEP 03</div>
-            <div className="glyph"><GlyphEliminate /></div>
+            <div className="num">03</div>
             <h3>Eliminate cleanly</h3>
             <p>Score each choice against the prediction. The right answer falls out — fast.</p>
           </div>
@@ -144,7 +180,7 @@ function Method() {
 
 function Demo({ onOpenDemo }) {
   return (
-    <section className="bg-bone">
+    <section>
       <div className="wrap" style={{maxWidth:"960px"}}>
         <div className="section-head center">
           <span className="eyebrow">See it in action</span>
@@ -209,7 +245,7 @@ function Instructor() {
 function Topics() {
   // Slim CTA — full curriculum lives on topics.html.
   return (
-    <section className="bg-bone" id="topics">
+    <section id="topics">
       <div className="wrap">
         <div className="topics-cta">
           <div className="topics-cta__copy">
@@ -297,7 +333,7 @@ function PriceCard({ tier, name, price, per, tagline, features, cta, popular, pl
 
 function Pricing() {
   return (
-    <section className="bg-bone" id="pricing">
+    <section id="pricing">
       <div className="wrap">
         <div className="section-head center">
           <span className="eyebrow">Pricing</span>
@@ -391,12 +427,12 @@ function FAQ() {
 
 function FinalCTA() {
   return (
-    <section className="bg-amber final-cta">
+    <section className="bg-anchor final-cta">
       <div className="wrap">
-        <span className="eyebrow" style={{color:"rgba(26,18,5,0.55)"}}>Ready to begin</span>
+        <span className="eyebrow">Ready to begin</span>
         <h2 className="mt-2">Ready to do English the math way?</h2>
         <p>Start free. Upgrade when you're ready.</p>
-        <a href="#pricing" className="btn btn-lg" style={{background:"#152647", color:"#fff", borderColor:"#152647"}}>
+        <a href="#pricing" className="btn btn-primary btn-lg">
           Start free <span className="btn-arrow">→</span>
         </a>
       </div>
@@ -509,4 +545,4 @@ function Walkthroughs() {
   );
 }
 
-Object.assign(window, { Nav, Hero, Problem, Method, Demo, Walkthroughs, Instructor, Topics, TopicsCTA, Testimonials, Pricing, FAQ, FinalCTA, Footer, VideoModal, TierBadge });
+Object.assign(window, { Nav, Hero, HeroMock, Problem, Method, Demo, Walkthroughs, Instructor, Topics, TopicsCTA, Testimonials, Pricing, FAQ, FinalCTA, Footer, VideoModal, TierBadge });
